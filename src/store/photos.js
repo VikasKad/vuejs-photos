@@ -12,9 +12,9 @@ export const photos = {
     },
     actions: {
         async getByAlbum(ctx, {
-            album
+            albumId
         }) {
-            const res = await window.fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${album.id}`)
+            const res = await window.fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`)
             const json = await res.json();
             ctx.commit('setV', json);
         }

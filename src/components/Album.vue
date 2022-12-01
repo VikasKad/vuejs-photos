@@ -1,11 +1,11 @@
 <template>
-  <button @click="click">
+  <router-link :to="`/albums/${album.id}`">
     {{ album.title }}
-  </button>
+  </router-link>
 </template>
 
 <script>
-import { useStore } from "vuex";
+// import { useStore } from "vuex";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Album",
@@ -15,21 +15,11 @@ export default {
       required: true,
     },
   },
-  setup(props) {
-    const store = useStore();
-    const click = () => {
-      store.dispatch("photos/getByAlbum", { album: props.album });
-    };
-
-    return {
-      click,
-    };
-  },
 };
 </script>
 
 <style scoped>
-button {
+a {
   background: darkcyan;
   color: white;
   border: none;
@@ -44,7 +34,7 @@ button {
   text-decoration: none;
   font-family: Arial;
 }
-button:hover {
+a:hover {
   filter: brightness(120%);
   cursor: pointer;
   transition: 0.1s;
