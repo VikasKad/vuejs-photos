@@ -7,7 +7,8 @@
       </album>
     </template>
     <template v-slot:content> 
-      <img v-for="photo in photos" :key="photo.id" :src="photo.thumbnailUrl">
+      <router-view />
+      
     </template>
   </LayoutContainer>
 </template>
