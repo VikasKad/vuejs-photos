@@ -2,9 +2,9 @@
   <LayoutContainer>
     <template v-slot:header> header </template>
     <template v-slot:sidebar>
-      <div v-for="album in albums" :key="album.id">
+      <album v-for="album in albums" :key="album.id" :album="album">
         {{ album.title }}
-      </div>
+      </album>
     </template>
     <template v-slot:content> content</template>
   </LayoutContainer>
@@ -14,19 +14,23 @@
 import { computed, onMounted } from "vue";
 import LayoutContainer from "./components/LayoutContainer.vue";
 import { useStore } from "vuex";
+import Album from "./components/Album.vue";
 export default {
   name: "App",
   components: {
     LayoutContainer,
+    Album,
   },
   setup() {
-    const store = useStore(); 
+    const store = useStore();
+
     onMounted(() => {
-      store.dispatch('albums/fetch')
+      store.dispatch("albums/fetch");
     });
-    const albums = computed(( )=>{
+
+    const albums = computed(() => {
       return store.state.albums.all;
-    })
+    });
 
     return {
       albums,
