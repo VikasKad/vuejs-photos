@@ -22,6 +22,7 @@ export default {
     const photos = computed(() => {
       return store.state.photos.photos;
     });
+    
     return {
       photos,
     };
