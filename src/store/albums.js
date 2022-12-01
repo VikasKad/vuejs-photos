@@ -1,15 +1,25 @@
 export const albums = {
-    namespaced:true,
+    namespaced: true,
 
-    state(){
-        return{
-
+    state() {
+        return {
+            all: []
         }
     },
-    mutations:{
-
+    mutations: {
+        setAlbums(state, albums) {
+            state.all = albums;
+        }
     },
-    actions:{
-        
+    actions: {
+        async fetch(ctx) {
+            console.log(ctx);
+
+            const res = await window.fetch(
+                "https://jsonplaceholder.typicode.com/albums"
+            );
+            const json = await res.json();
+            ctx.commit('setAlbums', json);
+        }
     }
 }

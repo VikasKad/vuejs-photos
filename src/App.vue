@@ -11,22 +11,22 @@
 </template>
 
 <script>
-import { ref, onMounted } from "vue";
+import { computed, onMounted } from "vue";
 import LayoutContainer from "./components/LayoutContainer.vue";
+import { useStore } from "vuex";
 export default {
   name: "App",
   components: {
     LayoutContainer,
   },
   setup() {
-    const albums = ref([]);
-    onMounted(async () => {
-      const res = await window.fetch(
-        "https://jsonplaceholder.typicode.com/albums"
-      );
-      const json = await res.json();
-      albums.value = json;
+    const store = useStore(); 
+    onMounted(() => {
+      store.dispatch('albums/fetch')
     });
+    const albums = computed(( )=>{
+      return store.state.albums.all;
+    })
 
     return {
       albums,
