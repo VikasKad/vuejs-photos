@@ -1,15 +1,15 @@
 export const albums = {
-    namespaced: true,
+    namespaced:true,
 
-    state() {
-        return {
+    state(){
+        return{
 
         }
     },
-    mutations: {
+    mutations:{
 
     },
-    actions: {
-
+    actions:{
+        
     }
 }
